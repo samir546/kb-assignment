@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+
+import Header from './components/Layout/Header';
+import Cart from './components/Cart/Cart';
+import CartProvider from './store/CartProvider';
+import Products from './components/Products/Products';
+import Weather from './components/Weather/Weather';
 
 function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
+  const [weatherCitySelectorShown, setWeatherCitySelectorShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const showWeatherCitySelectorHandler = () => {
+    setWeatherCitySelectorShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
+  const hideWeatherCitySelectorHandler = () => {
+    setWeatherCitySelectorShown(false);
+  };
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CartProvider>
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      {weatherCitySelectorShown && <Weather onClose={hideWeatherCitySelectorHandler} />}
+      <Header onShowCart={showCartHandler} onShowWeather={showWeatherCitySelectorHandler}/>
+      <main>
+        <Products />
+      </main>
+    </CartProvider>
   );
 }
 

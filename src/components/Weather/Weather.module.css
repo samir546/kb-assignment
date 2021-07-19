@@ -1,0 +1,20 @@
+.button {
+  font: inherit;
+  color: #ffffff;
+  border: 1px solid #00250e;
+  background-color: #00250e;
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  padding: 0.5rem 2rem;
+}
+
+.input {
+    display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+  
+  overflow: auto;
+}
